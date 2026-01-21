@@ -112,15 +112,6 @@
       .hero-text { text-align: center; }
     }
 
-    /* Fix Layout Buttons */
-    .buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-    }
-    @media (max-width: 900px) { .buttons { justify-content: center; } }
-
     .btn {
       display: inline-block;
       padding: 14px 28px;
@@ -132,6 +123,7 @@
       text-decoration: none;
       transition: all 0.25s ease;
       text-align: center;
+      cursor: pointer;
     }
     .btn:hover {
       transform: translateY(-3px);
@@ -152,7 +144,7 @@
     .section-title { text-align: center; margin-bottom: 50px; }
     .section-title h2 { font-size: 2.4rem; color: var(--primary); margin-bottom: 10px; }
 
-    /* Grid & Card Fix */
+    /* Grid & Card Layout */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -163,9 +155,9 @@
       border: 1px solid var(--border);
       padding: 30px;
       border-radius: var(--radius);
-      display: flex; /* Aktifkan flexbox */
-      flex-direction: column; /* Susun konten ke bawah */
-      height: 100%; /* Biar tinggi kotak sama semua */
+      display: flex;
+      flex-direction: column;
+      height: 100%;
       transition: all 0.3s ease;
     }
     .card:hover {
@@ -174,21 +166,60 @@
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     }
     .card h3 { color: var(--secondary); margin-bottom: 15px; }
-    .card p { color: var(--muted); margin-bottom: 20px; flex-grow: 1; /* PENTING: Biar teks ngambil ruang sisa */ }
+    .card p { color: var(--muted); margin-bottom: 20px; flex-grow: 1; }
     
-    /* Tombol di dalam card otomatis di bawah */
     .card .btn {
       margin-top: auto; 
       width: 100%;
     }
 
-    .admin-avatar {
-      width: 100%;
-      height: 180px;
+    /* IP Copy Box */
+    .ip-box {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px dashed var(--primary);
+      padding: 15px;
       border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 20px;
-      border: 1px solid var(--border);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .ip-box:hover {
+      background: rgba(255, 157, 0, 0.1);
+    }
+    .ip-box code {
+      font-family: 'Inter', monospace;
+      font-size: 1.1rem;
+      color: var(--primary);
+      font-weight: 800;
+      display: block;
+    }
+    .ip-box span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: block;
+      margin-top: 5px;
+    }
+    .copy-toast {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      opacity: 0;
+      transition: 0.3s;
+      pointer-events: none;
+    }
+    .copy-toast.show { opacity: 1; top: -40px; }
+
+    .admin-avatar {
+      width: 100%; height: 180px;
+      border-radius: 12px; overflow: hidden;
+      margin-bottom: 20px; border: 1px solid var(--border);
       background: #17110c;
     }
     .admin-avatar img { width: 100%; height: 100%; object-fit: cover; }
@@ -201,7 +232,6 @@
       background: rgba(15, 10, 7, 0.8);
     }
 
-    /* Animations */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -249,15 +279,15 @@
       <div class="grid">
         <div class="card">
           <h3>True Anarchy</h3>
-          <p>Tidak ada claim, tidak ada batasan PvP. Semua strategi diperbolehkan untuk bertahan hidup.</p>
+          <p>Tidak ada claim, tidak ada batasan PvP. Gunakan taktik terbaikmu untuk menguasai server.</p>
         </div>
         <div class="card">
           <h3>Economy Server</h3>
-          <p>Dapatkan uang dan jual barang-barangmu untuk menjadi orang terkaya dan terkuat di server.</p>
+          <p>Sistem ekonomi yang stabil. Jual beli barang dan jadilah pemain paling berpengaruh.</p>
         </div>
         <div class="card">
           <h3>Free To Play</h3>
-          <p>Server yang mengutamakan skill dan kerja keras, bukan sekadar membayar untuk menang.</p>
+          <p>Keadilan bagi semua pemain. Skill bertarung dan strategi adalah kunci utama kemenangan.</p>
         </div>
       </div>
     </section>
@@ -265,18 +295,17 @@
     <section id="admin" class="reveal">
       <div class="section-title">
         <h2>Admin Team</h2>
-        <p>Admin aktif, minim intervensi gameplay</p>
       </div>
       <div class="grid">
         <div class="card">
           <div class="admin-avatar"><img src="https://i.ibb.co.com/603yNykj/avatar-Head-1.png" alt="Owner"></div>
           <h3>ABAGI (Owner)</h3>
-          <p>Mengelola server, performa, dan arah komunitas agar tetap stabil.</p>
+          <p>Pengelola utama visi dan komunitas Kewer SMP.</p>
         </div>
         <div class="card">
           <div class="admin-avatar"><img src="https://i.ibb.co.com/dx2chZ0/hexamika.png" alt="Developer"></div>
           <h3>Hexamika (Developer)</h3>
-          <p>Menangani plugin, keamanan sistem, dan optimasi server.</p>
+          <p>Technical expert di balik sistem dan plugin server.</p>
         </div>
       </div>
     </section>
@@ -284,17 +313,16 @@
     <section id="store" class="reveal">
       <div class="section-title">
         <h2>Store</h2>
-        <p>Dukung server untuk terus berkembang</p>
       </div>
       <div class="grid">
         <div class="card">
           <h3>Rank VIP</h3>
           <ul style="color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; list-style: none;">
-            <li>• Kit VIP</li>
+            <li>• Akses Kit VIP</li>
             <li>• Command /feed</li>
-            <li>• Tag Unik Nolifer</li>
+            <li>• Prefix Eksklusif</li>
           </ul>
-          <a class="btn" href="https://wa.me/6281529466490?text=Beli%20VIP%20KEWERSMP" target="_blank">Beli via WhatsApp</a>
+          <a class="btn" href="https://wa.me/6281529466490?text=Beli%20VIP%20KEWERSMP" target="_blank">Beli Sekarang</a>
         </div>
         <div class="card">
           <h3>Rank MVP</h3>
@@ -303,12 +331,12 @@
             <li>• Command /repair & /heal</li>
             <li>• Tag StarLover</li>
           </ul>
-          <a class="btn" href="https://wa.me/6281529466490?text=Beli%20MVP%20KEWERSMP" target="_blank">Beli via WhatsApp</a>
+          <a class="btn" href="https://wa.me/6281529466490?text=Beli%20MVP%20KEWERSMP" target="_blank">Beli Sekarang</a>
         </div>
         <div class="card">
           <h3>Donate</h3>
-          <p>Dukungan sukarela agar server tetap online tanpa fitur pay-to-win.</p>
-          <a class="btn" href="https://sociabuzz.com/hexamika/support" target="_blank">Donasi Sekarang</a>
+          <p>Dukung server agar tetap online 24/7 dan terus berkembang lebih baik lagi.</p>
+          <a class="btn" href="https://sociabuzz.com/hexamika/support" target="_blank">Donasi</a>
         </div>
       </div>
     </section>
@@ -316,21 +344,24 @@
     <section id="contact" class="reveal">
       <div class="section-title">
         <h2>Contact & Grup</h2>
-        <p>Hubungi kami & bergabung dengan komunitas</p>
       </div>
       <div class="grid">
         <div class="card">
           <h3>Grup WhatsApp</h3>
-          <p>Bergabung dengan komunitas resmi kami untuk info terbaru dan diskusi antar pemain.</p>
+          <p>Dapatkan info event dan update terbaru langsung di handphone-mu.</p>
           <a class="btn" href="https://chat.whatsapp.com/IC1SBYnzQ6ZC48VxrIbk7l" target="_blank">Join WhatsApp</a>
         </div>
         <div class="card">
           <h3>IP Server</h3>
-          <p>Gunakan alamat di bawah untuk masuk ke dunia Kewer SMP:</p>
-          <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 10px;">
-             <code style="color: var(--primary); font-weight: bold;">holysmp.serveminecraft.net:20053</code>
+          <p>Klik kotak di bawah untuk menyalin IP:</p>
+          
+          <div class="ip-box" onclick="copyIP()">
+            <div id="toast" class="copy-toast">Tersalin!</div>
+            <code>kewersmp.mc-server.net</code>
+            <code>Port: 20053</code>
+            <span>(Satu klik langsung salin)</span>
           </div>
-          <small style="color: var(--muted); display: block; text-align: center;">Salin IP di atas</small>
+
         </div>
       </div>
     </section>
@@ -341,6 +372,19 @@
   </footer>
 
   <script>
+    // Fungsi Salin IP Otomatis
+    function copyIP() {
+      const ip = "kewersmp.mc-server.net:20053";
+      navigator.clipboard.writeText(ip).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2000);
+      });
+    }
+
+    // Scroll Reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
