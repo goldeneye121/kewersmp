@@ -5,17 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kewer SMP</title>
   <meta name="description" content="Kewer SMP adalah server Minecraft yang menggabungkan economy dan Anarchy">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #0f0a07;
-      --bg-soft: #1a1410;
-      --primary: #ff9d00;
-      --secondary: #ffc400;
-      --text: #fdfaf5;
-      --muted: #bda691;
-      --card: #1c1511;
-      --border: #4d3321;
+      /* Palette warna disesuaikan dengan Logo Kewer SMP */
+      --bg: #0f0a07;              
+      --bg-soft: #1a1410;         
+      --primary: #ff9d00;        
+      --secondary: #ffc400;      
+      --text: #f5f5f5;            
+      --muted: #bda691;           
+      --card: #1c1511;            
+      --border: #4d3321;          
       --radius: 18px;
     }
 
@@ -25,6 +28,7 @@
       padding: 0;
       scroll-behavior: smooth;
     }
+
     body {
       font-family: 'Inter', sans-serif;
       background:
@@ -47,6 +51,7 @@
       border-bottom: 1px solid var(--border);
       z-index: 1000;
     }
+
     nav {
       max-width: 1200px;
       margin: auto;
@@ -55,12 +60,14 @@
       align-items: center;
       padding: 16px 24px;
     }
+
     .logo {
       font-weight: 900;
       font-size: 1.3rem;
       letter-spacing: 1px;
       color: var(--primary);
     }
+
     nav a {
       color: var(--muted);
       text-decoration: none;
@@ -68,7 +75,10 @@
       font-weight: 500;
       transition: color 0.25s ease;
     }
-    nav a:hover { color: var(--primary); }
+
+    nav a:hover {
+      color: var(--primary);
+    }
 
     /* Hero */
     .hero {
@@ -79,6 +89,7 @@
       text-align: center;
       padding: 120px 24px 80px;
     }
+
     .hero-content {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
@@ -87,6 +98,11 @@
       max-width: 1200px;
       width: 100%;
     }
+
+    .hero-text {
+      text-align: left;
+    }
+
     .hero h1 {
       font-size: clamp(2.8rem, 6vw, 4.5rem);
       font-weight: 900;
@@ -96,20 +112,42 @@
       margin-bottom: 20px;
       animation: fadeUp 1s ease forwards;
     }
+
     .hero p {
       max-width: 720px;
+      font-size: 1.1rem;
       color: var(--muted);
       margin-bottom: 30px;
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 0.15s;
     }
+
+    .hero .buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    .hero-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .hero-logo img {
       width: 100%;
       max-width: 360px;
       filter: drop-shadow(0 25px 70px rgba(255, 157, 0, 0.4));
       animation: fadeUp 1s ease forwards;
     }
+
     @media (max-width: 900px) {
       .hero-content { grid-template-columns: 1fr; text-align: center; }
       .hero-text { text-align: center; }
+      .hero .buttons { justify-content: center; }
     }
 
     .btn {
@@ -123,15 +161,18 @@
       text-decoration: none;
       transition: all 0.25s ease;
       text-align: center;
-      cursor: pointer;
+      box-shadow: 0 12px 40px rgba(255, 157, 0, 0.25);
     }
+
     .btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 18px 55px rgba(255, 157, 0, 0.45);
     }
+
     .btn.secondary {
       background: transparent;
       color: var(--text);
+      box-shadow: none;
       border-color: var(--border);
     }
 
@@ -139,104 +180,151 @@
     section {
       max-width: 1200px;
       margin: auto;
-      padding: 80px 24px;
+      padding: 100px 24px;
     }
-    .section-title { text-align: center; margin-bottom: 50px; }
-    .section-title h2 { font-size: 2.4rem; color: var(--primary); margin-bottom: 10px; }
 
-    /* Grid & Card Layout */
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    /* Cards Fix */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
     }
+
     .card {
       background: linear-gradient(180deg, rgba(255,157,0,0.04), transparent), var(--card);
       border: 1px solid var(--border);
-      padding: 30px;
       border-radius: var(--radius);
+      padding: 30px;
       display: flex;
       flex-direction: column;
-      height: 100%;
-      transition: all 0.3s ease;
+      height: 100%; /* Menyamakan tinggi kartu */
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     }
+
     .card:hover {
       transform: translateY(-6px);
       border-color: var(--primary);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
     }
-    .card h3 { color: var(--secondary); margin-bottom: 15px; }
-    .card p { color: var(--muted); margin-bottom: 20px; flex-grow: 1; }
-    
+
+    .card h3 {
+      margin-bottom: 15px;
+      font-size: 1.25rem;
+      color: var(--secondary);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      flex-grow: 1; /* Mendorong tombol ke bawah */
+    }
+
     .card .btn {
-      margin-top: auto; 
+      margin-top: auto;
       width: 100%;
     }
 
-    /* IP Copy Box */
+    .card ul {
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      list-style: none;
+    }
+
+    .card ul li { margin-bottom: 8px; }
+    .card ul li::before { content: "•"; color: var(--primary); margin-right: 8px; font-weight: bold; }
+    
+    .admin-avatar {
+      width: 100%;
+      height: 180px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      background: #17110c;
+    }
+
+    .admin-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* IP Copy Styles */
     .ip-box {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.3);
       border: 1px dashed var(--primary);
-      padding: 15px;
+      padding: 20px;
       border-radius: 12px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: background 0.2s;
       position: relative;
     }
-    .ip-box:hover {
-      background: rgba(255, 157, 0, 0.1);
-    }
+
+    .ip-box:hover { background: rgba(255, 157, 0, 0.1); }
+
     .ip-box code {
-      font-family: 'Inter', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 1.1rem;
       color: var(--primary);
       font-weight: 800;
       display: block;
     }
-    .ip-box span {
-      font-size: 0.8rem;
-      color: var(--muted);
-      display: block;
-      margin-top: 5px;
-    }
+
+    .ip-box small { color: var(--muted); display: block; margin-top: 5px; }
+
     .copy-toast {
       position: absolute;
       top: -30px;
       left: 50%;
       transform: translateX(-50%);
       background: var(--primary);
-      color: #fff;
+      color: #000;
       padding: 4px 12px;
       border-radius: 4px;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: bold;
       opacity: 0;
       transition: 0.3s;
-      pointer-events: none;
     }
     .copy-toast.show { opacity: 1; top: -40px; }
 
-    .admin-avatar {
-      width: 100%; height: 180px;
-      border-radius: 12px; overflow: hidden;
-      margin-bottom: 20px; border: 1px solid var(--border);
-      background: #17110c;
-    }
-    .admin-avatar img { width: 100%; height: 100%; object-fit: cover; }
-
+    /* Footer */
     footer {
       border-top: 1px solid var(--border);
-      padding: 40px 24px;
+      background: rgba(26, 20, 16, 0.8);
+      backdrop-filter: blur(10px);
       text-align: center;
+      padding: 32px 24px;
       color: var(--muted);
-      background: rgba(15, 10, 7, 0.8);
     }
 
+    /* Animations */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
     .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
@@ -259,7 +347,10 @@
       <div class="hero-content">
         <div class="hero-text">
           <h1>KEWER SMP</h1>
-          <p>Server Minecraft <b>Anarchy</b> economy di Indonesia. Bangun, jarah, dan bertahan hidup dengan caramu sendiri.</p>
+          <p>
+            Server Minecraft <b>Anarchy</b> economy di Indonesia.  
+            Bangun, jarah, dan bertahan hidup dengan caramu sendiri.
+          </p>
           <div class="buttons">
             <a href="#about" class="btn">Explore Server</a>
             <a href="#store" class="btn secondary">Store</a>
@@ -279,15 +370,15 @@
       <div class="grid">
         <div class="card">
           <h3>True Anarchy</h3>
-          <p>Tidak ada claim, tidak ada batasan PvP. Gunakan taktik terbaikmu untuk menguasai server.</p>
+          <p>Tidak ada claim, tidak ada batasan PvP. Gunakan strategi terbaikmu untuk mendominasi server.</p>
         </div>
         <div class="card">
           <h3>Economy Server</h3>
-          <p>Sistem ekonomi yang stabil. Jual beli barang dan jadilah pemain paling berpengaruh.</p>
+          <p>Dapatkan uang melalui trading dan jadilah pemain terkaya dengan sistem ekonomi yang kompetitif.</p>
         </div>
         <div class="card">
           <h3>Free To Play</h3>
-          <p>Keadilan bagi semua pemain. Skill bertarung dan strategi adalah kunci utama kemenangan.</p>
+          <p>Semua fitur utama bisa dinikmati secara gratis. Skill dan kerja kerasmu adalah penentu kemenangan.</p>
         </div>
       </div>
     </section>
@@ -295,17 +386,22 @@
     <section id="admin" class="reveal">
       <div class="section-title">
         <h2>Admin Team</h2>
+        <p>Admin aktif demi stabilitas server</p>
       </div>
       <div class="grid">
         <div class="card">
-          <div class="admin-avatar"><img src="https://i.ibb.co.com/603yNykj/avatar-Head-1.png" alt="Owner"></div>
+          <div class="admin-avatar">
+            <img src="https://i.ibb.co.com/603yNykj/avatar-Head-1.png" alt="Owner Kewer SMP">
+          </div>
           <h3>ABAGI (Owner)</h3>
-          <p>Pengelola utama visi dan komunitas Kewer SMP.</p>
+          <p>Pengelola visi, misi, dan komunitas Kewer SMP.</p>
         </div>
         <div class="card">
-          <div class="admin-avatar"><img src="https://i.ibb.co.com/dx2chZ0/hexamika.png" alt="Developer"></div>
+          <div class="admin-avatar">
+            <img src="https://i.ibb.co.com/dx2chZ0/hexamika.png" alt="Developer Kewer SMP">
+          </div>
           <h3>Hexamika (Developer)</h3>
-          <p>Technical expert di balik sistem dan plugin server.</p>
+          <p>Ahli teknis di balik plugin dan performa server.</p>
         </div>
       </div>
     </section>
@@ -313,30 +409,31 @@
     <section id="store" class="reveal">
       <div class="section-title">
         <h2>Store</h2>
+        <p>Dukung server untuk terus berkembang</p>
       </div>
       <div class="grid">
         <div class="card">
           <h3>Rank VIP</h3>
-          <ul style="color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; list-style: none;">
-            <li>• Akses Kit VIP</li>
-            <li>• Command /feed</li>
-            <li>• Prefix Eksklusif</li>
+          <ul>
+            <li>/kit vip</li>
+            <li>/feed</li>
+            <li>Tag Unik: Nolifer</li>
           </ul>
-          <a class="btn" href="https://wa.me/6281529466490?text=Beli%20VIP%20KEWERSMP" target="_blank">Beli Sekarang</a>
+          <a class="btn" href="https://wa.me/6281529466490?text=Halo%20Admin%20mau%20beli%20rank%20VIP%20KEWERSMP" target="_blank">Beli via WhatsApp</a>
         </div>
         <div class="card">
           <h3>Rank MVP</h3>
-          <ul style="color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; list-style: none;">
-            <li>• Semua fitur VIP+</li>
-            <li>• Command /repair & /heal</li>
-            <li>• Tag StarLover</li>
+          <ul>
+            <li>Semua Fitur VIP+</li>
+            <li>/fly & /repair</li>
+            <li>Tag Khusus StarLover</li>
           </ul>
-          <a class="btn" href="https://wa.me/6281529466490?text=Beli%20MVP%20KEWERSMP" target="_blank">Beli Sekarang</a>
+          <a class="btn" href="https://wa.me/6281529466490?text=Halo%20Admin%20mau%20beli%20rank%20MVP%20KEWERSMP" target="_blank">Beli via WhatsApp</a>
         </div>
         <div class="card">
           <h3>Donate</h3>
-          <p>Dukung server agar tetap online 24/7 dan terus berkembang lebih baik lagi.</p>
-          <a class="btn" href="https://sociabuzz.com/hexamika/support" target="_blank">Donasi</a>
+          <p>Dukungan sukarela untuk biaya server agar tetap online 24/7.</p>
+          <a class="btn" href="https://sociabuzz.com/hexamika/support" target="_blank">Donasi Sekarang</a>
         </div>
       </div>
     </section>
@@ -348,20 +445,18 @@
       <div class="grid">
         <div class="card">
           <h3>Grup WhatsApp</h3>
-          <p>Dapatkan info event dan update terbaru langsung di handphone-mu.</p>
+          <p>Bergabunglah dengan komunitas resmi kami untuk info update tercepat.</p>
           <a class="btn" href="https://chat.whatsapp.com/IC1SBYnzQ6ZC48VxrIbk7l" target="_blank">Join WhatsApp</a>
         </div>
         <div class="card">
           <h3>IP Server</h3>
-          <p>Klik kotak di bawah untuk menyalin IP:</p>
-          
+          <p>Klik kotak di bawah ini untuk menyalin:</p>
           <div class="ip-box" onclick="copyIP()">
             <div id="toast" class="copy-toast">Tersalin!</div>
-            <code>kewersmp.mc-server.net</code>
-            <code>Port: 20053</code>
-            <span>(Satu klik langsung salin)</span>
+            <code id="server-address">kewersmp.mc-server.net</code>
+            <code style="font-size: 0.9rem; opacity: 0.8;">Port: 20053</code>
+            <small>(Sekali klik langsung salin)</small>
           </div>
-
         </div>
       </div>
     </section>
@@ -372,19 +467,17 @@
   </footer>
 
   <script>
-    // Fungsi Salin IP Otomatis
+    // Copy IP Function
     function copyIP() {
-      const ip = "kewersmp.mc-server.net:20053";
-      navigator.clipboard.writeText(ip).then(() => {
-        const toast = document.getElementById('toast');
-        toast.classList.add('show');
-        setTimeout(() => {
-          toast.classList.remove('show');
-        }, 2000);
+      const fullIP = "kewersmp.mc-server.net:20053";
+      navigator.clipboard.writeText(fullIP).then(() => {
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+        setTimeout(() => { toast.classList.remove("show"); }, 2000);
       });
     }
 
-    // Scroll Reveal
+    // Scroll Reveal Effect
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -395,5 +488,6 @@
     }, { threshold: 0.1 });
     reveals.forEach(r => observer.observe(r));
   </script>
+
 </body>
 </html>
